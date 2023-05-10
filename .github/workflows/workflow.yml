@@ -24,7 +24,7 @@ jobs:
         run: yarn install
 
       - name: execute ESLint
-        uses: reviewdog/action-eslint@1
+        uses: reviewdog/action-eslint@v1
         with:
           workdir: ./
           reporter: github-pr-review

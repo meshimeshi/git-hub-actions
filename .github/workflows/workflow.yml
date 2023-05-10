@@ -1,0 +1,37 @@
+name: CI workflow
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:lts-gallium
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: setup Node.js
+        uses: actions/seup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: install npm packagegs
+        run: yarn install
+
+      - name: execute ESLint
+        uses: reviewdog/action-eslint@1
+        with:
+          workdir: ./
+          reporter: github-pr-review
+          fail_on_error: true
+
+      - name: execute unit test
+        uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
+        with:
+          working-directory: ./
+          test-script: yarn test

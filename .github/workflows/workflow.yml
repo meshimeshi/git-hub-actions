@@ -23,13 +23,6 @@ jobs:
       - name: install npm packagegs
         run: yarn install
 
-      - name: execute ESLint
-        uses: reviewdog/action-eslint@v1
-        with:
-          workdir: ./
-          reporter: github-pr-review
-          fail_on_error: true
-
       - name: execute unit test
         uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
         with:

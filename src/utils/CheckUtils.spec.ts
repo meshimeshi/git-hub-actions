@@ -18,7 +18,7 @@ describe('check-util.ts', () => {
   });
   it('should return a true  if undefined', () => {
     const result = isEmptyString(undefined);
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
 
   it('should return a false if string and length > 0', async () => {
